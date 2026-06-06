@@ -31,7 +31,7 @@ def predict_local(model, invoice_amount, gst_rate, total_amount, vendor_frequenc
 
 
 def predict_api(endpoint, payload):
-    response = requests.post(endpoint, json=payload, timeout=15)
+    response = requests.post(endpoint, json=payload, timeout=60)
     response.raise_for_status()
     return response.json()
 
