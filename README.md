@@ -1,4 +1,4 @@
-# GST Invoice Validator (ML-Based)
+# GST Invoice Validator (ML-Based) (POD - 64)
 
 A beginner-friendly Python project that trains a machine learning model to classify GST invoices as `Valid` or `Suspicious`, serves predictions through a FastAPI backend, and provides an interactive Streamlit frontend.
 
