@@ -210,7 +210,7 @@ def main():
 
             api_endpoint = st.text_input(
                 "API Endpoint",
-                value="https://your-backend-name.onrender.com/predict",
+                value="https://gstinvoicevalidator1-pww5.onrender.com/predict",
             )
 
             submitted = st.form_submit_button(
