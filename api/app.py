@@ -5,6 +5,7 @@ from typing import Optional
 import joblib
 import numpy as np
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 
@@ -16,6 +17,15 @@ class InvoiceInput(BaseModel):
 
 
 app = FastAPI(title="GST Invoice Validator API")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 model: Optional[object] = None
 model_path = Path(__file__).resolve().parents[1] / "models" / "gst_invoice_validator.joblib"
 report_path = Path(__file__).resolve().parents[1] / "models" / "model_report.json"
