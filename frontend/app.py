@@ -259,50 +259,39 @@ def main():
                             vendor_frequency,
                         )
 
-                    result_class = (
-                        "valid"
-                        if prediction == "Valid"
-                        else "suspicious"
-                    )
+                   if prediction == "Valid":
+    st.success(f"✅ Prediction: {prediction}")
+else:
+    st.error(f"⚠️ Prediction: {prediction}")
 
-                    st.markdown(
-                        f"""
-                        <div class="prediction-card">
-                            <h3>
-                                Prediction:
-                                <span class="{result_class}">
-                                    {prediction}
-                                </span>
-                            </h3>
+col_a, col_b = st.columns(2)
 
-                            <p>
-                                <strong>Confidence:</strong>
-                                {confidence:.1%}
-                            </p>
+with col_a:
+    st.metric(
+        "Confidence",
+        f"{confidence:.1%}"
+    )
 
-                            <p>
-                                <strong>Invoice Amount:</strong>
-                                ₹{invoice_amount:,.0f}
-                            </p>
+    st.metric(
+        "Invoice Amount",
+        f"₹{invoice_amount:,.0f}"
+    )
 
-                            <p>
-                                <strong>GST Rate:</strong>
-                                {gst_rate}%
-                            </p>
+with col_b:
+    st.metric(
+        "GST Rate",
+        f"{gst_rate}%"
+    )
 
-                            <p>
-                                <strong>Total Amount:</strong>
-                                ₹{total_amount:,.0f}
-                            </p>
+    st.metric(
+        "Vendor Frequency",
+        str(vendor_frequency)
+    )
 
-                            <p>
-                                <strong>Vendor Frequency:</strong>
-                                {vendor_frequency}
-                            </p>
-                        </div>
-                        """,
-                        unsafe_allow_html=True,
-                    )
+st.metric(
+    "Total Amount",
+    f"₹{total_amount:,.0f}"
+)
 
                 except Exception as exc:
                     st.error(f"❌ Error: {str(exc)}")
